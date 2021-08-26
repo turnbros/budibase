@@ -11,10 +11,6 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "budibase.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
 spec:
   entryPoints:
     - {{$ingEntrypoint}}
