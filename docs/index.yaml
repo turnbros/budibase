@@ -3,7 +3,29 @@ entries:
   budibase:
   - apiVersion: v2
     appVersion: 0.9.56
-    created: "2021-08-26T18:56:47.165684-05:00"
+    created: "2021-08-26T18:58:41.793662-05:00"
+    dependencies:
+    - condition: services.couchdb.enabled
+      name: couchdb
+      repository: https://apache.github.io/couchdb-helm
+      version: 3.3.4
+    description: Budibase is an open source low-code platform, helping thousands of teams build apps for their workplace in minutes.
+    digest: 9eeac8d49421f1287cf924ae6e04a4c1b5e0e94c8c4bdd890d26fbd338e5f5d1
+    keywords:
+    - low-code
+    - database
+    - cluster
+    name: budibase
+    sources:
+    - https://github.com/Budibase/budibase
+    - https://budibase.com
+    type: application
+    urls:
+    - https://turnbros.github.io/budibase/budibase-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 0.9.56
+    created: "2021-08-26T18:58:41.792197-05:00"
     dependencies:
     - condition: services.couchdb.enabled
       name: couchdb
@@ -25,7 +47,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: 0.9.56
-    created: "2021-08-26T18:56:47.164114-05:00"
+    created: "2021-08-26T18:58:41.790758-05:00"
     dependencies:
     - condition: services.couchdb.enabled
       name: couchdb
@@ -47,7 +69,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 0.9.56
-    created: "2021-08-26T18:56:47.162525-05:00"
+    created: "2021-08-26T18:58:41.789314-05:00"
     dependencies:
     - condition: services.couchdb.enabled
       name: couchdb
@@ -69,7 +91,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 0.9.56
-    created: "2021-08-26T18:56:47.160196-05:00"
+    created: "2021-08-26T18:58:41.787031-05:00"
     dependencies:
     - condition: services.couchdb.enabled
       name: couchdb
@@ -91,7 +113,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 0.9.56
-    created: "2021-08-26T18:56:47.158548-05:00"
+    created: "2021-08-26T18:58:41.785416-05:00"
     dependencies:
     - condition: services.couchdb.enabled
       name: couchdb
@@ -114,4 +136,4 @@ entries:
     urls:
     - https://turnbros.github.io/budibase/budibase-0.1.0.tgz
     version: 0.1.0
-generated: "2021-08-26T18:56:47.154195-05:00"
+generated: "2021-08-26T18:58:41.781376-05:00"
