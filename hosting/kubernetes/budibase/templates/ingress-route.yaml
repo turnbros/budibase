@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "budibase.fullname" . -}}
+
 {{- $ingEntrypoint := .Values.ingress.entrypoint -}}
 {{- $ingHost := .Values.ingress.host -}}
 {{- $svcName := .Values.service.name -}}
@@ -8,7 +8,7 @@ apiVersion: traefik.containo.us/v1alpha1
 {{- end }}
 kind: IngressRoute
 metadata:
-  name: {{ $fullName }}
+  name: budibase-ingress
   labels:
     {{- include "budibase.labels" . | nindent 4 }}
 spec:
