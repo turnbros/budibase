@@ -37,24 +37,14 @@ securityContext: {}
 
 service:
   type: ClusterIP
+  name: proxy-service
   port: 10000
 
 ingress:
-  enabled: true
-  certificateArn: ""
-  className: ""
-  annotations: 
-    kubernetes.io/ingress.class: traefik
-  hosts:
-    - host: # change if using custom domain
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: proxy-service
-            port:
-              number: 10000 
+  enabled: true  
+  entrypoint: websecure
+  host: cloud.turnbros.app
+  cert_issuer: letsencrypt-prod 
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
