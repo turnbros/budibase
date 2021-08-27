@@ -5,8 +5,7 @@ metadata:
   name: budibase
 spec:
   commonName: {{ .Values.ingress.common_name }}
-  dnsNames:
-    - {{ .Values.ingress.dns_names }}
+  dnsNames: {{ .Values.ingress.dns_names }}
   issuerRef:
     kind: ClusterIssuer
     name: {{ .Values.ingress.cert_issuer }}
