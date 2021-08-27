@@ -31,11 +31,10 @@ spec:
         ports:
         - containerPort: {{ .Values.services.proxy.port }}
         resources: {}
-        volumeMounts:
-          volumeMounts:
-          - name: envoy-config
-            mountPath: "/etc/envoy"
-            readOnly: true
+        volumeMounts:  
+        - name: envoy-config
+          mountPath: "/etc/envoy"
+          readOnly: true
       restartPolicy: Always
       serviceAccountName: ""
       volumes:
