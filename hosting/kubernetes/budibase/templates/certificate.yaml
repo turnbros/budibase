@@ -1,9 +1,4 @@
----
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "budibase.fullname" . -}}
-{{- $ingEntrypoint := .Values.ingress.entrypoint -}}
-{{- $ingHost := .Values.ingress.host -}}
-{{- $ingCertIssuer := .Values.ingress.cert_issuer -}}
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -11,9 +6,9 @@ metadata:
 spec:
   secretName: budibase-crt-secret
   dnsNames:
-  - {{ $ingHost }}
+    - {{ .Values.ingress.host }}
   issuerRef:
     kind: Issuer
     group: cert-manager.io
-    name: {{ $ingCertIssuer }}
+    name: {{ .Values.ingress.cert_issuer }}
 {{- end }}
