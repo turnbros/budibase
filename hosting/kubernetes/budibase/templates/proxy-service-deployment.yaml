@@ -24,7 +24,6 @@ spec:
         app.kubernetes.io/component: proxy
         app.kubernetes.io/managed-by: argocd
     spec:
-      restartPolicy: Always
       containers:
       - name: proxy-service
         image: budibase/proxy

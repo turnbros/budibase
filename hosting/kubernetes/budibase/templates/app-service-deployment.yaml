@@ -27,7 +27,6 @@ spec:
       - name: bbapps
         image: budibase/apps
         imagePullPolicy: Always
-        restartPolicy: Always
         ports:
         - containerPort: {{ .Values.services.apps.port }}
         env:

@@ -25,7 +25,6 @@ spec:
       - name: bbworker
         image: budibase/worker
         imagePullPolicy: Always
-        restartPolicy: Always
         ports:
         - containerPort: {{ .Values.services.worker.port }}
         env:
