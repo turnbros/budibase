@@ -80,53 +80,53 @@ data:
         type: strict_dns
         lb_policy: round_robin
         load_assignment:
-        cluster_name: app-service
-        endpoints:
-        - lb_endpoints:
-            - endpoint:
-                address:
-                socket_address: 
-                    address: app-service.budibase.svc.cluster.local
-                    port_value: 4002
+          cluster_name: app-service
+          endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                  socket_address: 
+                      address: app-service.budibase.svc.cluster.local
+                      port_value: 4002
 
     - name: minio-service
         connect_timeout: 0.25s
         type: strict_dns
         lb_policy: round_robin
         load_assignment:
-        cluster_name: minio-service
-        endpoints:
-        - lb_endpoints:
-            - endpoint:
-                address:
-                socket_address:
-                    address: minio-service.budibase.svc.cluster.local
-                    port_value: 9000
+          cluster_name: minio-service
+          endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                  socket_address:
+                      address: minio-service.budibase.svc.cluster.local
+                      port_value: 9000
 
     - name: worker-service
         connect_timeout: 0.25s
         type: strict_dns
         lb_policy: round_robin
         load_assignment:
-        cluster_name: worker-service
-        endpoints:
-        - lb_endpoints:
-            - endpoint:
-                address:
-                socket_address: 
-                    address: worker-service.budibase.svc.cluster.local
-                    port_value: 4001
+          cluster_name: worker-service
+          endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                  socket_address: 
+                      address: worker-service.budibase.svc.cluster.local
+                      port_value: 4001
 
     - name: couchdb-service
         connect_timeout: 0.25s
         type: strict_dns
         lb_policy: round_robin
         load_assignment:
-        cluster_name: couchdb-service
-        endpoints:
-        - lb_endpoints:
-            - endpoint:
-                address:
-                socket_address:
-                    address: budibase-svc-couchdb.budibase.svc.cluster.local
-                    port_value: 5984
+          cluster_name: couchdb-service
+          endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                  socket_address:
+                      address: budibase-svc-couchdb.budibase.svc.cluster.local
+                      port_value: 5984
