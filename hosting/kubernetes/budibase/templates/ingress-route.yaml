@@ -10,7 +10,7 @@ spec:
     - {{ .Values.ingress.entrypoint }}
   routes:
   - kind: Rule
-    match: Host(`{{ $ingHost }}`)
+    match: Host(`{{ .Values.ingress.host }}`)
     middlewares: []
     services:
     - kind: Service
