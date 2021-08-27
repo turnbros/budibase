@@ -35,11 +35,6 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  name: proxy-service
-  port: 10000
-
 ingress:
   enabled: true  
   entrypoint: websecure
@@ -91,6 +86,8 @@ services:
   dns: cluster.local
 
   proxy:
+    type: ClusterIP
+    name: proxy-service
     port: 10000
     replicaCount: 1
 
