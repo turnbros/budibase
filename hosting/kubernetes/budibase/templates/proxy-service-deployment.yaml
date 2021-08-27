@@ -42,6 +42,6 @@ spec:
         configMap:
           name: {{ .Values.services.proxy.name }}-configmap
           items:
-          - key: "envoy.yml"
-            path: "envoy.yml"
+          - key: "envoy.yaml"
+            path: "envoy.yaml"
 status: {}
