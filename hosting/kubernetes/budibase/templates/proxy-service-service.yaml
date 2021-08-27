@@ -9,9 +9,10 @@ metadata:
     app.kubernetes.io/name: budibase-proxy
   name: {{ .Values.services.proxy.name }}
 spec:
-  type: NodePort
+  type: {{ .Values.services.proxy.type }}
   ports:
-  - port: {{ .Values.services.proxy.port }}
+  - name: {{ .Values.services.proxy.port | quote }}
+    port: {{ .Values.services.proxy.port }}
     targetPort: {{ .Values.services.proxy.port }}
     protocol: TCP
   selector:
