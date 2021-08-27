@@ -30,10 +30,6 @@ data:
                                 cluster: app-service
                                 prefix_rewrite: "/"
 
-                            - match: { path: "/v1/update" }
-                              route:
-                                cluster: watchtower-service
-
                             - match: { prefix: "/builder/" }
                               route:
                                 cluster: app-service
