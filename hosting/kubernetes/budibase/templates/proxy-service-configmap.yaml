@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: budibase-proxy
 data:
-  envoy.yaml:
+  envoy.yaml: |
     static_resources:
       listeners:
       - name: main_listener
