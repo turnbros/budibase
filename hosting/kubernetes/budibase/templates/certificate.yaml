@@ -8,7 +8,7 @@ spec:
   dnsNames:
     - {{ .Values.ingress.host }}
   issuerRef:
-    kind: Issuer
+    kind: ClusterIssuer
     group: cert-manager.io
     name: {{ .Values.ingress.cert_issuer }}
 {{- end }}
