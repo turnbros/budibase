@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: bbworker
-        image: budibase/worker
+        image: budibase/worker:develop
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.services.worker.port }}

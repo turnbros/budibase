@@ -25,7 +25,8 @@ spec:
     spec:
       containers:
       - name: bbapps
-        image: budibase/apps
+        image: budibase/apps:develop
+        
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.services.apps.port }}
