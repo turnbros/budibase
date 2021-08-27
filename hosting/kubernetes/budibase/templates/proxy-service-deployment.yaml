@@ -32,7 +32,17 @@ spec:
         - containerPort: {{ .Values.services.proxy.port }}
         resources: {}
         volumeMounts:
+          volumeMounts:
+          - name: envoy-config
+            mountPath: "/etc/envoy"
+            readOnly: true
       restartPolicy: Always
       serviceAccountName: ""
       volumes:
+      - name: envoy-config
+        configMap:
+          name: {{ .Values.services.proxy.name }}-configmap
+          items:
+          - key: "envoy.yml"
+            path: "envoy.yml"
 status: {}
