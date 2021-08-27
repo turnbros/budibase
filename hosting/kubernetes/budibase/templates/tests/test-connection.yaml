@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "budibase.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "budibase.fullname" . }}:{{ .Values.services.proxy.name }}']
   restartPolicy: Never
