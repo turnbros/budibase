@@ -20,7 +20,7 @@ allowAdminParty: false
 ##
 ## 2) This flag can be disabled and a Secret with the required keys can be
 ##    created ahead of time.
-createAdminSecret: true
+createAdminSecret: false
 
 # adminUsername: budibase
 # adminPassword: budibase
@@ -84,7 +84,8 @@ podManagementPolicy: Parallel
 
 ## To better tolerate Node failures, we can prevent Kubernetes scheduler from
 ## assigning more than one Pod of CouchDB StatefulSet per Node using podAntiAffinity.
-affinity: {}
+affinity:
+  {}
   # podAntiAffinity:
   #   requiredDuringSchedulingIgnoredDuringExecution:
   #     - labelSelector:
@@ -120,7 +121,8 @@ ingress:
   hosts:
     - chart-example.local
   path: /
-  annotations: []
+  annotations:
+    []
     # kubernetes.io/tls-acme: "true"
   tls:
     # Secrets must be manually created in the namespace.
@@ -153,7 +155,7 @@ erlangFlags:
 ## ref: http://docs.couchdb.org/en/latest/config/index.html
 couchdbConfig:
   couchdb:
-   uuid: budibase-couchdb # REQUIRED: Unique identifier for this CouchDB server instance
+    uuid: budibase-couchdb # REQUIRED: Unique identifier for this CouchDB server instance
   # cluster:
   #   q: 8 # Create 8 shards for each database
   chttpd:
@@ -186,7 +188,8 @@ readinessProbe:
 
 # Configure arbitrary sidecar containers for CouchDB pods created by the
 # StatefulSet
-sidecars: {}
+sidecars:
+  {}
   # - name: foo
   #   image: "busybox"
   #   imagePullPolicy: IfNotPresent
