@@ -3,6 +3,11 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: budibase
+  labels:
+    app.kubernetes.io/name: budibase-certificate
+    app.kubernetes.io/part-of: budibase
+    app.kubernetes.io/component: ingress
+    app.kubernetes.io/managed-by: argocd
 spec:
   commonName: {{ .Values.ingress.common_name }}
   dnsNames: {{ .Values.ingress.dns_names }}

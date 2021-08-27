@@ -4,6 +4,9 @@ metadata:
   name: {{ .Values.services.proxy.name }}-configmap
   labels:
     app.kubernetes.io/name: budibase-proxy
+    app.kubernetes.io/part-of: budibase
+    app.kubernetes.io/component: proxy
+    app.kubernetes.io/managed-by: argocd
 data:
   envoy.yaml: |
     ---

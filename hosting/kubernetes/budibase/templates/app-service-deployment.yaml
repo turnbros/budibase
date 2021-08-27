@@ -1,31 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: app-service
   name: app-service
+  labels:
+    app.kubernetes.io/name: app-service
+    app.kubernetes.io/part-of: budibase
+    app.kubernetes.io/component: app
+    app.kubernetes.io/managed-by: argocd
 spec:
   replicas: {{ .Values.services.apps.replicaCount }}
   selector:
     matchLabels:
-      io.kompose.service: app-service
+      app.kubernetes.io/name: app-service
+      app.kubernetes.io/part-of: budibase
   strategy:
     type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.service: app-service
+        app.kubernetes.io/name: app-service
+        app.kubernetes.io/part-of: budibase
+        app.kubernetes.io/component: app
+        app.kubernetes.io/managed-by: argocd
     spec:
       containers:
-      - env:
+      - name: bbapps
+        image: budibase/apps
+        imagePullPolicy: Always
+        restartPolicy: Always
+        ports:
+        - containerPort: {{ .Values.services.apps.port }}
+        env:
         - name: BUDIBASE_ENVIRONMENT
           value: {{ .Values.globals.budibaseEnv }}
         - name: COUCH_DB_URL
@@ -94,12 +99,7 @@ spec:
           value: {{ .Values.globals.sentryDSN }}
         - name: WORKER_URL
           value: worker-service:{{ .Values.services.worker.port }}
-        image: budibase/apps
-        imagePullPolicy: Always
-        name: bbapps
-        ports:
-        - containerPort: {{ .Values.services.apps.port }}
-        resources: {}
-      restartPolicy: Always
-      serviceAccountName: ""
-status: {}
+        
+        
+        
+        

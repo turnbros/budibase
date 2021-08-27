@@ -1,32 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: worker-service
   name: worker-service
+  labels:
+    app.kubernetes.io/name: worker-service
+    app.kubernetes.io/part-of: budibase
+    app.kubernetes.io/component: worker
+    app.kubernetes.io/managed-by: argocd
 spec:
   replicas: {{ .Values.services.worker.replicaCount }}
-
   selector:
     matchLabels:
-      io.kompose.service: worker-service
+      app.kubernetes.io/name: worker-service
+      app.kubernetes.io/part-of: budibase
   strategy:
     type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.service: worker-service
+        app.kubernetes.io/name: worker-service
+        app.kubernetes.io/part-of: budibase
     spec:
       containers:
-      - env:
+      - name: bbworker
+        image: budibase/worker
+        imagePullPolicy: Always
+        restartPolicy: Always
+        ports:
+        - containerPort: {{ .Values.services.worker.port }}
+        env:
         - name: CLUSTER_PORT
           value: {{ .Values.services.worker.port | quote }}
         - name: COUCH_DB_USER
@@ -87,12 +89,3 @@ spec:
           {{ end }}
         - name: SELF_HOSTED
           value: {{ .Values.globals.selfHosted | quote }}
-        image: budibase/worker
-        imagePullPolicy: Always
-        name: bbworker
-        ports:
-        - containerPort: {{ .Values.services.worker.port }}
-        resources: {}
-      restartPolicy: Always
-      serviceAccountName: ""
-status: {}

@@ -4,7 +4,10 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "budibase.fullname" . }}
   labels:
-    {{- include "budibase.labels" . | nindent 4 }}
+    app.kubernetes.io/name: budibase-hpa
+    app.kubernetes.io/part-of: budibase
+    app.kubernetes.io/component: hpa
+    app.kubernetes.io/managed-by: argocd
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

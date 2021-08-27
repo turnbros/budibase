@@ -2,40 +2,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: redis-service
   name: redis-service
+  labels:
+    app.kubernetes.io/name: redis-service
+    app.kubernetes.io/part-of: budibase
+    app.kubernetes.io/component: redis
+    app.kubernetes.io/managed-by: argocd
 spec:
   replicas: {{ .Values.services.redis.replicaCount }}
   selector:
     matchLabels:
-      io.kompose.service: redis-service
+      app.kubernetes.io/name: redis-service
+      app.kubernetes.io/part-of: budibase
   strategy:
     type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.service: redis-service
+        app.kubernetes.io/name: redis-service
+        app.kubernetes.io/part-of: budibase
+        app.kubernetes.io/component: redis
+        app.kubernetes.io/managed-by: argocd
     spec:
+      name: redis-service
+      image: redis
+      imagePullPolicy: Always
       containers:
       - args:
         - redis-server 
         - --requirepass 
         - {{ .Values.services.redis.password }}
-        image: redis
-        imagePullPolicy: ""
-        name: redis-service
         ports:
         - containerPort: {{ .Values.services.redis.port }}
-        resources: {}
         volumeMounts:
         - mountPath: /data
           name: redis-data
@@ -45,5 +43,4 @@ spec:
       - name: redis-data
         persistentVolumeClaim:
           claimName: redis-data
-status: {}
 {{- end }}

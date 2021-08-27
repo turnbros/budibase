@@ -4,7 +4,10 @@ kind: IngressRoute
 metadata:
   name: budibase-ingress
   labels:
-    {{- include "budibase.labels" . | nindent 4 }}
+    app.kubernetes.io/name: budibase-ingress
+    app.kubernetes.io/part-of: budibase
+    app.kubernetes.io/component: ingress
+    app.kubernetes.io/managed-by: argocd
 spec:
   entryPoints:
     - {{ .Values.ingress.entrypoint }}
