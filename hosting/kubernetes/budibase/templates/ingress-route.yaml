@@ -10,13 +10,13 @@ spec:
     - {{ .Values.ingress.entrypoint }}
   routes:
   - kind: Rule
-    match: Host(`{{ .Values.ingress.host }}`)
+    match: Host(`{{ .Values.ingress.common_name }}`)
     middlewares: []
     services:
     - kind: Service
-      scheme: https
+      scheme: http
       name: {{ .Values.service.name }}
       port: {{ .Values.service.port }}
   tls:
-    secretName: budibase-crt-secret
+    secretName: budibase-traefik-tls
 {{- end }}

@@ -2,12 +2,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: budibase-crt
+  name: budibase
 spec:
-  secretName: budibase-crt-secret
+  commonName: {{ .Values.ingress.common_name }}
   dnsNames:
-    - {{ .Values.ingress.host }}
+    - {{ .Values.ingress.dns_names }}
   issuerRef:
     kind: ClusterIssuer
     name: {{ .Values.ingress.cert_issuer }}
+  secretName: budibase-traefik-tls
 {{- end }}

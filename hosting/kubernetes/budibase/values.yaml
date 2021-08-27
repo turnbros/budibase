@@ -43,8 +43,10 @@ service:
 ingress:
   enabled: true  
   entrypoint: websecure
-  host: cloud.turnbros.app
   cert_issuer: letsencrypt-prod 
+  common_name: cloud.arroyo.turnbros.app
+  dns_names:
+    - cloud.arroyo.turnbros.app
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
