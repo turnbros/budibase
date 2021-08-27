@@ -24,11 +24,11 @@ spec:
         app.kubernetes.io/component: redis
         app.kubernetes.io/managed-by: argocd
     spec:
-      name: redis-service
-      image: redis
-      imagePullPolicy: Always
       containers:
-      - args:
+      - name: redis-service
+        image: redis
+        imagePullPolicy: Always
+        args:
         - redis-server 
         - --requirepass 
         - {{ .Values.services.redis.password }}
@@ -37,7 +37,6 @@ spec:
         volumeMounts:
         - mountPath: /data
           name: redis-data
-      serviceAccountName: ""
       volumes:
       - name: redis-data
         persistentVolumeClaim:
