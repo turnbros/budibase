@@ -30,10 +30,10 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.services.proxy.port }}
-        volumeMounts:  
-        - name: envoy-config
-          mountPath: "/etc/envoy"
-          readOnly: true
+#        volumeMounts:  
+#        - name: envoy-config
+#          mountPath: "/etc/envoy"
+#          readOnly: true
       volumes:
       - name: envoy-config
         configMap:
