@@ -45,6 +45,12 @@ data:
                               route:
                                 cluster: app-service
 
+                            # I added this
+                            - match: { prefix: "/api/global/auth/oidc/callback" }
+                              route:
+                                cluster: worker-service
+                                prefix_rewrite: "/api/global/auth/default/oidc/callback"
+
                             # special cases for worker admin (deprecated), global and system API
                             - match: { prefix: "/api/global/" }
                               route:
