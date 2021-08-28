@@ -24,10 +24,12 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -36,14 +38,15 @@ securityContext: {}
   # runAsUser: 1000
 
 ingress:
-  enabled: true  
+  enabled: true
   entrypoint: websecure
-  cert_issuer: letsencrypt-prod 
+  cert_issuer: letsencrypt-prod
   common_name: cloud.arroyo.turnbros.app
   dns_names:
     - cloud.arroyo.turnbros.app
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -72,7 +75,7 @@ globals:
   budibaseEnv: PRODUCTION
   enableAnalytics: false
   posthogToken: ""
-  sentryDSN: "" 
+  sentryDSN: ""
   logLevel: info
   selfHosted: 1
   createSecrets: true # creates an internal API key, JWT secrets and redis password for you
@@ -80,7 +83,6 @@ globals:
   # if createSecrets is set to false, you can hard-code your secrets here
   internalApiKey: ""
   jwtSecret: ""
-
 
 services:
   dns: cluster.local
@@ -94,11 +96,12 @@ services:
   apps:
     port: 4002
     replicaCount: 1
-    logLevel: info
+    logLevel: debug
 
   worker:
     port: 4001
     replicaCount: 1
+    logLevel: debug
 
   couchdb:
     enabled: true
@@ -108,7 +111,7 @@ services:
     password: "" # only change if pointing to existing couch server
     port: 5984
     storage: 100Mi
-  
+
   redis:
     enabled: true # disable if using external redis
     port: 6379
@@ -116,15 +119,14 @@ services:
     url: "" # only change if pointing to existing redis cluster and enabled: false
     password: "budibase" # recommended to override if using built-in redis
     storage: 100Mi
-  
+
   objectStore:
     minio: true
     browser: true
     port: 9000
     replicaCount: 1
     accessKey: "" # AWS_ACCESS_KEY if using S3 or existing minio access key
-    secretKey: "" # AWS_SECRET_ACCESS_KEY if using S3 or existing minio secret 
-    region: "" # AWS_REGION if using S3 or existing minio secret 
-    url: "" # only change if pointing to existing minio cluster and minio: false 
+    secretKey: "" # AWS_SECRET_ACCESS_KEY if using S3 or existing minio secret
+    region: "" # AWS_REGION if using S3 or existing minio secret
+    url: "" # only change if pointing to existing minio cluster and minio: false
     storage: 100Mi
-
