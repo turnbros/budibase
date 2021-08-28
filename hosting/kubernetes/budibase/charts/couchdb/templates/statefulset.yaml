@@ -24,7 +24,6 @@ spec:
 {{ toYaml . | indent 8 }}
 {{- end }}
     spec:
-      {{- end }}
       {{- if .Values.serviceAccount.enabled }}
       serviceAccountName: {{ template "couchdb.serviceAccount" . }}
       {{- end }}
